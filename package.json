@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
     "url": "https://github.com/cassidylinhares/sofe3980Assignment1/issues"
   },
   "homepage": "https://github.com/cassidylinhares/sofe3980Assignment1#readme",
-  "dependencies": {}
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1"
+  }
 }
