@@ -35,6 +35,7 @@ describe('test Paddle Class Movement', () => {
     it('y location should decrease to move up', function(done){
         assert.isBelow(p.y, 160, 'y loc is less than 160');
         assert.isBelow(p.y, 25, 'y loc is less than 25');
+        expect(p.y).to.be.equal(0);
         done();
     });
 
@@ -51,6 +52,7 @@ describe('test Paddle Class Movement', () => {
     it('y location should increase to move down', function(done){
         assert.isAbove(p1.y, 160, 'y loc is more than 160');
         assert.isAbove(p1.y, 200, 'y loc is more than 200');
+        expect(p1.y).to.be.equal(p1.screenHeight - p1.height);
         done();
     });
 });

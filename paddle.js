@@ -1,6 +1,7 @@
 class Paddle {
     constructor(x, screenHeight){
         // Location of where to build the paddle
+        this.screenHeight = screenHeight;
         this.x = x;
         this.y = parseInt(screenHeight / 3); 
 
@@ -19,11 +20,15 @@ class Paddle {
     }
 
     up(){
-        this.y -= 5;
+        if(this.y > 0){
+            this.y -= 5;
+        }
     }
 
     down(){
-        this.y += 5;
+        if(this.y < (this.screenHeight-this.height)){
+            this.y += 5;
+        }
     }
 }
 
