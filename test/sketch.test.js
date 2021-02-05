@@ -1,5 +1,6 @@
 const { expect } = require('chai');
 const Canvas = require('../sketch');
+const Paddle = require('../paddle');
 
 describe('test for main canvas', () => {
     let canvas;
@@ -18,5 +19,34 @@ describe('test for main canvas', () => {
         done();
     });
 
+});
+
+describe('integration test for paddles', () => {
+    let c;
+    before(function(){
+        c = new Canvas();
+        c.player = new Paddle(27, c.height);
+        c.bot = new Paddle(c.width-27-c.player.width, c.height)
+    });
+
+    it('paddle 1 should be an object', function(done){
+        expect(c.player).to.be.a('object');
+        done();
+    });
+
+    it('paddle 2 should be an object', function(done){
+        expect(c.bot).to.be.a('object');
+        done();
+    });
+
+    it('paddle 1 width should be 25px', function(done){
+        expect(c.player.width).to.be.equal(25);
+        done();
+    });
+
+    it('paddle 2 width should be 25px', function(done){
+        expect(c.bot.width).to.be.equal(25);
+        done();
+    });
 });
 

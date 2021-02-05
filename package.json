@@ -2,7 +2,7 @@
   "name": "sofe3980assignment1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "sketch.js",
   "scripts": {
     "test": "mocha"
   },

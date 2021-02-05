@@ -2,22 +2,25 @@ class Canvas{
     constructor(){
         this.width = 720;
         this.height = 480;
+        this.player;
+        this.bot;
     }
 }
 
-let player, bot;
-
 function setup() {
-    canvas = new Canvas();
-    createCanvas(canvas.width, canvas.height);
-    player = new Paddle(27, this.height);
-    bot = new Paddle(canvas.width-27-player.width, canvas.height)
+    c = new Canvas();
+    createCanvas(c.width, c.height);
+    c.player = new Paddle(27, c.height);
+    c.bot = new Paddle(c.width-27-c.player.width, c.height);
 }
 
 function draw() {
     background(50);
-    player.display();
-    bot.display();
+    c.player.display();
+    c.bot.display();
+
+    // Make the player paddle move up!
+    c.player.up();
 }
 
 

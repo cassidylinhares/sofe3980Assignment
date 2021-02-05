@@ -12,6 +12,14 @@ class Paddle {
         fill(255);
         rect(this.x, this.y, this.width, this.height);
     }
+
+    up(){
+        this.y -= 5;
+    }
+
+    down(){
+        this.y += 5;
+    }
 }
 
 module.exports = Paddle;
