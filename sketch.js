@@ -20,7 +20,30 @@ function draw() {
     c.bot.display();
 
     // Make the player paddle move up!
-    c.player.up();
+    if(c.player.pressedUp){ // Can only be tested manually because keyboard event cannot be simulated in mocha
+        c.player.up();
+    }
+    if(c.player.pressedDown){
+        c.player.down();
+    }
+}
+
+function keyPressed() {
+    if(keyCode == UP_ARROW){
+        c.player.pressedUp = true;
+    }
+    if(keyCode == DOWN_ARROW){
+        c.player.pressedDown = true;
+    }
+}
+
+function keyReleased() {
+    if(keyCode == UP_ARROW){
+        c.player.pressedUp = false;
+    }
+    if(keyCode == DOWN_ARROW){
+        c.player.pressedDown = false;
+    }
 }
 
 

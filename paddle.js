@@ -1,11 +1,16 @@
 class Paddle {
     constructor(x, screenHeight){
-        //location of where to build the paddle
+        // Location of where to build the paddle
         this.x = x;
         this.y = parseInt(screenHeight / 3); 
-        //the dimension of the paddle
+
+        // The dimension of the paddle
         this.height = 90;
         this.width = 25;
+
+        // Key press to move paddle
+        this.pressedUp = false;
+        this.pressedDown = false;
     }
 
     display(){
