@@ -15,8 +15,8 @@ describe('test cases for paddle Class', () => {
     }); 
 
     it('width of paddle should be 25, height of paddle should be 90', function(done){
-        expect(p.width).to.be.equal(25);
-        expect(p.height).to.be.equal(90);
+        expect(p.width).to.be.equal(20);
+        expect(p.height).to.be.equal(100);
         done();
     });
 });

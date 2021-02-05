@@ -6,8 +6,8 @@ class Paddle {
         this.y = parseInt(screenHeight / 3); 
 
         // The dimension of the paddle
-        this.height = 90;
-        this.width = 25;
+        this.height = 100;
+        this.width = 20;
 
         // Key press to move paddle
         this.pressedUp = false;

@@ -4,6 +4,7 @@ class Canvas{
         this.height = 480;
         this.player;
         this.bot;
+        this.ball;
     }
 }
 
@@ -12,12 +13,14 @@ function setup() {
     createCanvas(c.width, c.height);
     c.player = new Paddle(27, c.height);
     c.bot = new Paddle(c.width-27-c.player.width, c.height);
+    c.ball = new Ball(c.width, c.height);
 }
 
 function draw() {
     background(50);
     c.player.display();
     c.bot.display();
+    c.ball.display();
 
     // Make the player paddle move up!
     if(c.player.pressedUp){ // Can only be tested manually because keyboard event cannot be simulated in mocha
