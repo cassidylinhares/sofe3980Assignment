@@ -20,40 +20,81 @@ describe('test cases for Ball Class', () => {
     });
 });
 
-// describe('test Paddle Class Movement', () => {
-//     let p;
-//     before(function(){
-//         let x = 26, screenHeight = 480, i=0;
-//         p = new Paddle(x, screenHeight);
-//         while(i<200){
-//             p.up();
-//             i++;
-//         }
-//     });
+describe('test Ball reset Function', () => {
+    let b;
+    before(function(){
+        let w = 720, h = 480, x=100, y=200, xspeed=4, yspeed=4;
+        b = new Ball(w, h, x, y, xspeed, yspeed);
+        b.reset();
+    });
 
-//     it('y location should decrease to move up', function(done){
-//         assert.isBelow(p.y, 160, 'y loc is less than 160');
-//         assert.isBelow(p.y, 25, 'y loc is less than 25');
-//         expect(p.y).to.be.equal(0);
-//         done();
-//     });
+    it('x should be 100', function(done){
+        expect(b.x).to.be.equal(100);
+        done();
+    });
 
-//     let p1;
-//     before(function(){
-//         let x = 26, screenHeight = 480, i=0;
-//         p1 = new Paddle(x, screenHeight);
-//         while(i<200){
-//             p1.down();
-//             i++
-//         }
-//     });
+    it('y should be 200', function(done){
+        expect(b.y).to.be.equal(200);
+        done();
+    });
 
-//     it('y location should increase to move down', function(done){
-//         assert.isAbove(p1.y, 160, 'y loc is more than 160');
-//         assert.isAbove(p1.y, 200, 'y loc is more than 200');
-//         expect(p1.y).to.be.equal(p1.screenHeight - p1.height);
-//         done();
-//     });
-// });
+    it('y Speed should be 4', function(done){
+        expect(b.yVel).to.be.equal(4);
+        done();
+    });
+
+    it('x Speed should be 4 or -4', function(done){
+        expect(b.xVel).to.be.oneOf([-4, 4]);
+        done();
+    });
+});
+
+describe('test Ball Collision', () => {
+    const tests = [
+        //test y and yspeed
+        {x: 200, y: 0, speedx:3, speedy:3, expcX: 200, expcY: 0, expcXspeed: [-3,3], expcYspeed: -3},
+        {x: 200, y: 480, speedx:3, speedy:3, expcX: 200, expcY: 480, expcXspeed: [-3,3], expcYspeed: -3},
+        {x: 200, y: 200, speedx:3, speedy:3, expcX: 200, expcY: 200, expcXspeed: [-3,3], expcYspeed: 3},
+        {x: 0, y: 480, speedx:3, speedy:0, expcX: 0, expcY: 480, expcXspeed: [-3,3], expcYspeed: 0},
+        //test x and xspeed
+        {x: 0, y: 200, speedx:3, speedy:3, expcX: 0, expcY: 200, expcXspeed: [-3,3], expcYspeed: 3},
+        {x: 740, y: 200, speedx:3, speedy:3, expcX: 740, expcY: 200, expcXspeed: [-3,3], expcYspeed: 3},
+        {x: 100, y: 200, speedx:3, speedy:3, expcX: 100, expcY: 200, expcXspeed: 3, expcYspeed: 3},
+        {x: 0, y: 200, speedx:3, speedy:3, expcX: 0, expcY: 200, expcXspeed: 'number', expcYspeed: 3},
+    ];
+    tests.forEach((c)=>{
+        let b;
+        before(function(){
+            b = new Ball(720, 480, c.x, c.y, c.speedx, c.speedy);
+            b.collision();
+        });
+        it(`x should be ${c.expcX}`, function(done){
+            expect(b.x).to.be.equal(c.expcX);
+            done();
+        });
+    
+        it(`y should be ${c.expcY}`, function(done){
+            expect(b.y).to.be.equal(c.expcY);
+            done();
+        });
+    
+        it(`x Speed should be one of ${c.expcXspeed}`, function(done){
+            if(Array.isArray(c.expcXspeed)){
+                expect(b.xVel).to.be.oneOf(c.expcXspeed);
+            }else if(typeof c.expcXspeed == 'string'){
+                expect(typeof b.xVel).to.be.a('string');
+            }else{
+                expect(b.xVel).to.be.equal(c.expcXspeed);
+            }
+            done();
+        });
+    
+        it(`y Speed should be ${c.expcYspeed}`, function(done){
+            expect(b.yVel).to.be.equal(c.expcYspeed);
+            done();
+        });
+
+    });
+});
 
 

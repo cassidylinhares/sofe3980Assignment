@@ -22,6 +22,8 @@ function draw() {
     c.bot.display();
     c.ball.display();
 
+    c.ball.move();
+
     // Make the player paddle move up!
     if(c.player.pressedUp){ // Can only be tested manually because keyboard event cannot be simulated in mocha
         c.player.up();
