@@ -1,4 +1,5 @@
 const { expect, assert } = require('chai');
+const Paddle = require('../paddle');
 const Ball = require('../pongBall');
 
 describe('test cases for Ball Class', () => {
@@ -49,7 +50,7 @@ describe('test Ball reset Function', () => {
     });
 });
 
-describe('test Ball Collision', () => {
+describe('test Ball Collision with Wall', () => {
     const tests = [
         //test y and yspeed
         {x: 200, y: 0, speedx:3, speedy:3, expcX: 200, expcY: 0, expcXspeed: [-3,3], expcYspeed: -3},
@@ -66,7 +67,7 @@ describe('test Ball Collision', () => {
         let b;
         before(function(){
             b = new Ball(720, 480, c.x, c.y, c.speedx, c.speedy);
-            b.collision();
+            b.wallCollision();
         });
         it(`x should be ${c.expcX}`, function(done){
             expect(b.x).to.be.equal(c.expcX);
@@ -97,4 +98,66 @@ describe('test Ball Collision', () => {
     });
 });
 
+describe('test Ball Collision with function: withinPaddleHeight', () => {
+    const tests = [
+        //test left paddles
+        {x: 100, y: 160, speedx:-3, speedy:3, expc: true},
+        {x: 100, y: 300, speedx:-3, speedy:3, expc: false}
+    ];
+    tests.forEach((c)=>{
+        let b, p, p2;
+        before(function(){
+            b = new Ball(720, 480, c.x, c.y, c.speedx, c.speedy);
+            p = new Paddle(27, 480);
+            p2 = new Paddle(673, 480);
+        });
 
+        it(`ball in height should be ${c.expc}`, function(done){
+            expect(b.withinPaddleHeight(p)).to.be.equal(c.expc);
+            done();
+        });
+
+        it(`ball in height should be ${c.expc}`, function(done){
+            expect(b.withinPaddleHeight(p2)).to.be.equal(c.expc);
+            done();
+        });
+    });
+});
+
+describe('test Ball Collision with player Paddle', () => {
+    const tests = [
+        {x: 45, y: 160, speedx:-3, speedy:3, expcX: 45, expcY: 160, expcXspeed: 3, expcYspeed:3},
+        {x: 50, y: 160, speedx:-3, speedy:3, expcX: 50, expcY: 160, expcXspeed: 3, expcYspeed:3},
+        {x: 65, y: 160, speedx:-3, speedy:3, expcX: 65, expcY: 160, expcXspeed: -3, expcYspeed:3},
+        {x: 45, y: 100, speedx:-3, speedy:3, expcX: 45, expcY: 100, expcXspeed: -3, expcYspeed:3}
+    ];
+    tests.forEach((c)=>{
+        let b, p, p2;
+        before(function(){
+            b = new Ball(720, 480, c.x, c.y, c.speedx, c.speedy);
+            p = new Paddle(27, 480);
+            b.hitPlayer(p);
+            //p2 = new Paddle(673, 480);
+        });
+
+        it(`x should be ${c.expcX}`, function(done){
+            expect(b.x).to.be.equal(c.expcX);
+            done();
+        });
+    
+        it(`y should be ${c.expcY}`, function(done){
+            expect(b.y).to.be.equal(c.expcY);
+            done();
+        });
+    
+        it(`x Speed should be one ${c.expcXspeed}`, function(done){
+            expect(b.xVel).to.be.equal(c.expcXspeed);
+            done();
+        });
+    
+        it(`y Speed should be ${c.expcYspeed}`, function(done){
+            expect(b.yVel).to.be.equal(c.expcYspeed);
+            done();
+        });
+    });
+});

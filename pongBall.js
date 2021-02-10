@@ -32,7 +32,23 @@ class Ball {
         } 
     }
 
-    collision(){
+    hitPlayer(player){
+        if((this.x - this.r) <= (player.x + player.width) && this.x > player.x){
+            if(this.withinPaddleHeight(player)){
+                this.xVel = -this.xVel;
+            }
+        }
+    }
+
+    hitBot(bot){
+
+    }
+
+    withinPaddleHeight(paddle){
+        return this.y >= paddle.y && this.y <= (paddle.y+paddle.height);
+    }
+
+    wallCollision(){
         // Check for collision on top or bottom
         if(this.y < this.r || this.y > (this.height - this.r)){
             this.yVel = -this.yVel;
@@ -45,7 +61,7 @@ class Ball {
     }
 
     move(){
-        this.collision();
+        this.wallCollision();
 
         this.x += this.xVel;
         this.y += this.yVel;
