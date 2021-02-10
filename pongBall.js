@@ -41,7 +41,11 @@ class Ball {
     }
 
     hitBot(bot){
-
+        if((this.x + this.r) >= (bot.x) && this.x <= (bot.x + bot.width)){
+            if(this.withinPaddleHeight(bot)){
+                this.xVel = -this.xVel;
+            }
+        }
     }
 
     withinPaddleHeight(paddle){

@@ -150,7 +150,45 @@ describe('test Ball Collision with player Paddle', () => {
             done();
         });
     
-        it(`x Speed should be one ${c.expcXspeed}`, function(done){
+        it(`x Speed should be ${c.expcXspeed}`, function(done){
+            expect(b.xVel).to.be.equal(c.expcXspeed);
+            done();
+        });
+    
+        it(`y Speed should be ${c.expcYspeed}`, function(done){
+            expect(b.yVel).to.be.equal(c.expcYspeed);
+            done();
+        });
+    });
+});
+
+
+describe('test Ball Collision with Bot Paddle', () => {
+    const tests = [
+        {x: 675, y: 160, speedx:3, speedy:3, expcX: 675, expcY: 160, expcXspeed: -3, expcYspeed:3},
+        {x: 665, y: 160, speedx:3, speedy:3, expcX: 665, expcY: 160, expcXspeed: -3, expcYspeed:3},
+        {x: 300, y: 160, speedx:3, speedy:3, expcX: 300, expcY: 160, expcXspeed: 3, expcYspeed:3},
+        {x: 675, y: 100, speedx:3, speedy:3, expcX: 675, expcY: 100, expcXspeed: 3, expcYspeed:3}
+    ];
+    tests.forEach((c)=>{
+        let b, p;
+        before(function(){
+            b = new Ball(720, 480, c.x, c.y, c.speedx, c.speedy);
+            p = new Paddle(673, 480);
+            b.hitBot(p);
+        });
+
+        it(`x should be ${c.expcX}`, function(done){
+            expect(b.x).to.be.equal(c.expcX);
+            done();
+        });
+    
+        it(`y should be ${c.expcY}`, function(done){
+            expect(b.y).to.be.equal(c.expcY);
+            done();
+        });
+    
+        it(`x Speed should be ${c.expcXspeed}`, function(done){
             expect(b.xVel).to.be.equal(c.expcXspeed);
             done();
         });
