@@ -13,6 +13,7 @@ class Canvas{
 }
 
 // Define all the objects
+// setup is called by p5
 function setup() {
     c = new Canvas();
     createCanvas(c.width, c.height);
@@ -70,7 +71,7 @@ function keyPressed() {
     }
 }
 
-// Checks for keyboard releases
+// Checks for keyboard release
 //Cannot test this with automation becuase no way to simulate key press
 function keyReleased() {
     if(keyCode == UP_ARROW){
