@@ -132,12 +132,11 @@ describe('test Ball Collision with player Paddle', () => {
         {x: 45, y: 100, speedx:-3, speedy:3, expcX: 45, expcY: 100, expcXspeed: -3, expcYspeed:3}
     ];
     tests.forEach((c)=>{
-        let b, p, p2;
+        let b, p;
         before(function(){
             b = new Ball(720, 480, c.x, c.y, c.speedx, c.speedy);
             p = new Paddle(27, 480);
             b.hitPlayer(p);
-            //p2 = new Paddle(673, 480);
         });
 
         it(`x should be ${c.expcX}`, function(done){
@@ -161,7 +160,6 @@ describe('test Ball Collision with player Paddle', () => {
         });
     });
 });
-
 
 describe('test Ball Collision with Bot Paddle', () => {
     const tests = [
