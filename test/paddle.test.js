@@ -1,5 +1,6 @@
 const { expect, assert } = require('chai');
 const Paddle = require('../paddle');
+const Ball = require('../pongBall');
 
 describe('test cases for paddle Class', () => {
     let p;
@@ -57,4 +58,28 @@ describe('test Paddle Class Movement', () => {
     });
 });
 
+describe('test bot paddle movement', () => {
+    const tests = [
+        {x: 300, y: 0, speedx:3, speedy:3, expcX: 673, expcY: 155},
+        {x: 300, y: 400, speedx:3, speedy:3, expcX: 673, expcY: 165}
+    ];
 
+    tests.forEach((c)=>{
+        let b, p;
+        before(function(){
+            b = new Ball(720, 480, c.x, c.y, c.speedx, c.speedy);
+            p = new Paddle(673, 480);
+            p.moveBot(b);
+        });
+
+        it(`x of paddle should be ${c.expcX}`, function(done){
+            expect(p.x).to.be.equal(c.expcX);
+            done();
+        });
+    
+        it(`y of paddle should be ${c.expcY}`, function(done){
+            expect(p.y).to.be.equal(c.expcY);
+            done();
+        });
+    });
+});

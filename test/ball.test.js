@@ -126,8 +126,8 @@ describe('test Ball Collision with function: withinPaddleHeight', () => {
 
 describe('test Ball Collision with player Paddle', () => {
     const tests = [
-        {x: 45, y: 160, speedx:-3, speedy:3, expcX: 45, expcY: 160, expcXspeed: 3, expcYspeed:3},
-        {x: 50, y: 160, speedx:-3, speedy:3, expcX: 50, expcY: 160, expcXspeed: 3, expcYspeed:3},
+        {x: 45, y: 160, speedx:-3, speedy:3, expcX: 62, expcY: 160, expcXspeed: 3, expcYspeed:3},
+        {x: 50, y: 160, speedx:-3, speedy:3, expcX: 62, expcY: 160, expcXspeed: 3, expcYspeed:3},
         {x: 65, y: 160, speedx:-3, speedy:3, expcX: 65, expcY: 160, expcXspeed: -3, expcYspeed:3},
         {x: 45, y: 100, speedx:-3, speedy:3, expcX: 45, expcY: 100, expcXspeed: -3, expcYspeed:3}
     ];
@@ -163,8 +163,8 @@ describe('test Ball Collision with player Paddle', () => {
 
 describe('test Ball Collision with Bot Paddle', () => {
     const tests = [
-        {x: 675, y: 160, speedx:3, speedy:3, expcX: 675, expcY: 160, expcXspeed: -3, expcYspeed:3},
-        {x: 665, y: 160, speedx:3, speedy:3, expcX: 665, expcY: 160, expcXspeed: -3, expcYspeed:3},
+        {x: 675, y: 160, speedx:3, speedy:3, expcX: 658, expcY: 160, expcXspeed: -3, expcYspeed:3},
+        {x: 665, y: 160, speedx:3, speedy:3, expcX: 658, expcY: 160, expcXspeed: -3, expcYspeed:3},
         {x: 300, y: 160, speedx:3, speedy:3, expcX: 300, expcY: 160, expcXspeed: 3, expcYspeed:3},
         {x: 675, y: 100, speedx:3, speedy:3, expcX: 675, expcY: 100, expcXspeed: 3, expcYspeed:3}
     ];

@@ -1,5 +1,5 @@
 class Ball {
-    constructor(screenWidth, screenHeight, x=-1, y=-1, xspeed=0, yspeed=null){
+    constructor(screenWidth, screenHeight, x=null, y=-1, xspeed=0, yspeed=null){
         this.width = screenWidth;
         this.height = screenHeight;
         this.xVar = x;
@@ -8,7 +8,7 @@ class Ball {
         this.yspeed = yspeed;
 
         // Location of where to build the ball
-        this.x = this.xVar > -1 ? this.xVar :this.width / 2;
+        this.x = this.xVar != null ? this.xVar :this.width / 2;
         this.y = this.yVar > -1 ? this.yVar :this.height / 2;
         
         // Properties of the ball
@@ -20,7 +20,7 @@ class Ball {
     }
 
     reset(){
-        this.x = this.xVar > -1 ? this.xVar :this.width / 2;
+        this.x = this.xVar != null ? this.xVar :this.width / 2;
         this.y = this.yVar > -1 ? this.yVar :this.height / 2;
         
         this.xVel = this.xspeed != 0 ? this.xspeed : Math.random() * (2.5 - 2) + 2;
@@ -33,23 +33,25 @@ class Ball {
     }
 
     hitPlayer(player){
-        if((this.x - this.r) <= (player.x + player.width) && this.x >= player.x){
+        if((this.x - this.r) <= (player.x + player.width) && this.x-this.r >= player.x){
             if(this.withinPaddleHeight(player)){
+                this.x = player.x + player.width+this.r;
                 this.xVel = -this.xVel;
             }
         }
     }
 
     hitBot(bot){
-        if((this.x + this.r) >= (bot.x) && this.x <= (bot.x + bot.width)){
+        if((this.x + this.r) >= bot.x && this.x <= (bot.x + bot.width)){
             if(this.withinPaddleHeight(bot)){
+                this.x = bot.x - this.r;
                 this.xVel = -this.xVel;
             }
         }
     }
 
     withinPaddleHeight(paddle){
-        return this.y >= paddle.y && this.y <= (paddle.y+paddle.height);
+        return this.y+this.r >= paddle.y && this.y+this.r <= (paddle.y+paddle.height);
     }
 
     wallCollision(){

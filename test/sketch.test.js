@@ -2,6 +2,7 @@ const { expect } = require('chai');
 const Canvas = require('../sketch');
 const Paddle = require('../paddle');
 const Ball = require('../pongBall');
+const Score = require('../score');
 
 describe('test for main canvas', () => {
     let canvas;
@@ -63,9 +64,26 @@ describe('integration test for ball', () => {
         done();
     });
 
-    it('paddle 1 width should be 25px', function(done){
+    it('ball radius should be 15px', function(done){
         expect(c.ball.r).to.be.equal(15);
         done();
     });
 });
 
+describe('integration test for score', () => {
+    let c;
+    before(function(){
+        c = new Canvas();
+        c.playerScore = new Score(c.width/2-30);
+    });
+
+    it('score should be an object', function(done){
+        expect(c.playerScore).to.be.a('object');
+        done();
+    });
+
+    it('pt should start at 0', function(done){
+        expect(c.playerScore.pt).to.be.equal(0);
+        done();
+    });
+});
