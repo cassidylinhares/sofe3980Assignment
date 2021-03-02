@@ -6,7 +6,7 @@
 1. Download or clone this repository [here](https://github.com/cassidylinhares/sofe3980Assignment1).  
 1. Open the folder you just cloned/downloaded
 1. Open the terminal in that folder and use the command `npm install` to install all the dependencies.
-1. Open index.html in a browser to run the game.
+1. Open index.html in a Firefox to run the game.
 
 ## Rules and How to Play
 
