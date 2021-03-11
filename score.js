@@ -41,6 +41,7 @@ class Score {
     checkBotScored(ball, playerScore){
         if(ball.x < ball.r){
             this.pt++;
+            console.trace("bot point", this.pt) //assignment#2 part 1: var 5
         }
         this.checkWin(playerScore);
     }

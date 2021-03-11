@@ -48,6 +48,7 @@ class Ball {
             if(this.withinPaddleHeight(player)){
                 this.x = player.x + player.width+this.r;
                 this.xVel = -this.xVel; //change horizontal directions
+                console.trace("Ball & Player Collision- Ball's X-vel: ", this.xVel) //assignment#2 part 1: var 1
             }
         }
     }
@@ -62,12 +63,13 @@ class Ball {
             if(this.withinPaddleHeight(bot)){
                 this.x = bot.x - this.r;
                 this.xVel = -this.xVel; //change horizontal directions
+                console.trace("Ball & Bot Collision- Ball's X-loc: ",this.x) //assignment#2 part 1: var 2
             }
         }
     }
 
     /*
-    return: void
+    return: boolean
     params: paddle: Paddle object
     desc: checks if ball is within the paddle's height
     */
@@ -84,6 +86,7 @@ class Ball {
         // Check for collision on top or bottom
         if(this.y < this.r || this.y > (this.height - this.r)){
             this.yVel = -this.yVel;
+            console.trace("Ball & Wall Collision- Ball's y-loc", this.yVel) //assignment#2 part 1: var 3
         }
 
         // Check for goal

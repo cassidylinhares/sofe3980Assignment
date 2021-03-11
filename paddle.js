@@ -52,6 +52,7 @@ class Paddle {
     up(){
         if(this.y > 0){
             this.y -= 5;
+            console.trace("Paddle's Y-loc", this.y, Error().lineNumber) //assignment#2 part 1: var 4
         }
     }
 
